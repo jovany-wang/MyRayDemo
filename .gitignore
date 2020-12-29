@@ -4,3 +4,8 @@ target
 
 .idea
 
+lib
+
+# mac
+.DS_Store
+

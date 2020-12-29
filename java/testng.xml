@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="RAYDEMO suite" verbose="2">
+    <test name = "RAYDEMO test">
+        <packages>
+            <package name = "wang.jovany.*" />
+        </packages>
+    </test>
+<!--    <listeners>-->
+<!--        <listener class-name="io.ray.test.RayAlterSuiteListener" />-->
+<!--        <listener class-name="io.ray.test.TestProgressListener" />-->
+<!--        <listener class-name="io.ray.test.AnnotationTransformer" />-->
+<!--    </listeners>-->
+</suite>
