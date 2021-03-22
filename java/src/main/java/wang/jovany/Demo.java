@@ -4,6 +4,7 @@ import io.ray.api.ActorHandle;
 import io.ray.api.Ray;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class Demo {
 
@@ -13,13 +14,24 @@ public class Demo {
     }
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws InterruptedException {
     System.setProperty("ray.job.long-running", "true");
 //    System.setProperty("ray.job.id", "0001");
     Ray.init();
 
     if(args == null || args.length != 3) {
       throw new RuntimeException("args is null or args.length is not 2.");
+    }
+
+
+    ActorHandle<MyActor> myActor = Ray.actor(MyActor::new).remote();
+
+    while (true) {
+      myActor.task(MyActor::echo, "hello my world.").remote().get();
+      TimeUnit.MILLISECONDS.sleep(50);
+      if (args.length > 100) {
+        break;
+      }
     }
 
     final boolean asyncCreateActors = args[0].equalsIgnoreCase("true");
